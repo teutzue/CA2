@@ -16,6 +16,42 @@
       <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.password" value=""/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="eclipselink.canonicalmodel.subpackage" value="production"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="CA2_OpenShiftPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>javaL:/comp/env/jdbc/MySQLDS</jta-data-source>
+    <class>entity.Address</class>
+    <class>entity.CityInfo</class>
+    <class>entity.Company</class>
+    <class>entity.Hobby</class>
+    <class>entity.InfoEntity</class>
+    <class>entity.Person</class>
+    <class>entity.Phone</class>
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
+      <property name="eclipselink.canonicalmodel.subpackage" value="deploy"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="CA2-deployment" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <jta-data-source>java:/CA2-deployment</jta-data-source>
+    <class>entity.Address</class>
+    <class>entity.CityInfo</class>
+    <class>entity.Company</class>
+    <class>entity.Hobby</class>
+    <class>entity.InfoEntity</class>
+    <class>entity.Person</class>
+    <class>entity.Phone</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/CA2-Deployment?zeroDateTimeBehavior=convertToNull"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.password" value=""/>
+      <property name="eclipselink.canonicalmodel.subpackage" value="production2"/>
+      <property name="javax.persistence.schema-generation.database.action" value="create"/>
     </properties>
   </persistence-unit>
 </persistence>

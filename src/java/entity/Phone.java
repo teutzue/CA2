@@ -23,6 +23,14 @@ public class Phone implements Serializable {
     @ManyToOne
     private InfoEntity infoEntity;
 
+    public InfoEntity getInfoEntity() {
+        return infoEntity;
+    }
+
+    public void setInfoEntity(InfoEntity infoEntity) {
+        this.infoEntity = infoEntity;
+    }
+    
     public Phone() {
     }
     

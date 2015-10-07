@@ -74,7 +74,7 @@ public class GenericResource {
                 phoneArray.add(phoneJson);
             }
             
-            json.addProperty("phones", phoneArray.toString());
+            json.add("phones", phoneArray);
             json.addProperty("strret", p.getAddress().getStreet());
             json.addProperty("additionalInfo", p.getAddress().getAdditionalInfo());
             json.addProperty("zipcode", p.getAddress().getCityInfo().getZipCode());

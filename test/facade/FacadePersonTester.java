@@ -22,37 +22,33 @@ import testData.TestDataPerson;
  *
  * @author bo
  */
-public class FacadeTester {
-    
-    //Facade facade = new Facade(Persistence.createEntityManagerFactory("CA2-deployment"));
+public class FacadePersonTester {
     
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2-deployment");
     Facade facade = new Facade(emf);
     
-    public FacadeTester() {
-        
-    }
+    public FacadePersonTester() {}
     
-    
+   
     
     @Before
-    public void setUp() {
-        
-        EntityManager em = facade.getEntityManager();
-        try {
-
-            em.getTransaction().begin();
-            // here should all the tables in the database be deleted
-            em.createQuery("DELETE FROM InfoEntity").executeUpdate();
-            em.getTransaction().commit();
-            
-        } finally {
-            em.close();
-        }
-        
-        
-    } // End of setup()
+    public void setUp() {EntityManager em = facade.getEntityManager();
     
+    // can't workout how to delete columnes in the data base ?????????????
+    
+//        try {
+//
+//            em.getTransaction().begin();
+//            // here should all the tables in the database be deleted
+//            em.createQuery("DELETE FROM InfoEntity").executeUpdate();
+//            em.getTransaction().commit();
+//            
+//        } finally {
+//            em.close();
+//        }
+    } // end of Before
+    
+
   
     @Test
     public void addPerson() {
@@ -107,3 +103,4 @@ public class FacadeTester {
            
     
 } // End of class
+

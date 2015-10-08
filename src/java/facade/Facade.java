@@ -43,21 +43,7 @@ public class Facade {
         }
         return p;
     }
-
-//    @Override
-//    public List<person> getpersons() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public List<person> getpersonsByPhone() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public List<Company> getCompanyInfooByPhone() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
+    
     public Person editPerson(Person entity) {
 
         EntityManager em = emf.createEntityManager();
@@ -125,11 +111,6 @@ public class Facade {
         return l;//it is needed to be checked if its null
     }
 
-//
-//    @Override
-//    public Company getCompanyInfoByCvr() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     public List<Company> getCompaniesWithMOreThanEmployees(int number) {
         EntityManager ems = emf.createEntityManager();
         String queryString = "select e. FROM Company e where e.NumEmployees >:something";

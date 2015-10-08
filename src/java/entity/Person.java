@@ -20,9 +20,14 @@ public class Person extends InfoEntity {
     @ManyToMany(mappedBy = "persons", cascade = CascadeType.PERSIST)
     private List<Hobby> hobbys = new ArrayList<>();
 
-    public Person() {
+    public Person() {}
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
-
+    
+    
+    
     public String getFirstName() {
         return firstName;
     }

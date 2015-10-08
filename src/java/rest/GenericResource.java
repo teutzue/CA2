@@ -124,14 +124,15 @@ public class GenericResource {
         }
 
         Address address = new Address();
-        String street = person.get("street").getAsString();
+        String strret = person.get("strret").getAsString();
         String additionalinfo = person.get("additionalInfo").getAsString();
-        address.setStreet(street);
+        address.setStreet(strret);
         address.setAdditionalInfo(additionalinfo);
         p.setAddress(address);
         address.addInfoEntity(p);
 
         CityInfo cityinfo = new CityInfo();
+        
         String zip = person.get("zipcode").getAsString();
         String city = person.get("city").getAsString();
         int zipnumber = Integer.parseInt(zip);
@@ -139,6 +140,7 @@ public class GenericResource {
         cityinfo.setCity(city);
 
         address.setCityInfo(cityinfo);
+        
         cityinfo.addAddress(address);
 
         JsonArray hobbiesArr = person.getAsJsonArray("hobbies");
@@ -174,7 +176,7 @@ public class GenericResource {
 
         jsonReturned.add("phones", phoneArray);
 
-        jsonReturned.addProperty("street", p.getAddress().getStreet());
+        jsonReturned.addProperty("strret", p.getAddress().getStreet());
         jsonReturned.addProperty("additionalInfo", p.getAddress().getAdditionalInfo());
         jsonReturned.addProperty("zipcode", p.getAddress().getCityInfo().getZipCode());
         jsonReturned.addProperty("city", p.getAddress().getCityInfo().getCity());
@@ -201,10 +203,11 @@ public class GenericResource {
 
         InfoEntity info = cus.find(id);
         InfoEntity inforeturned = cus.deleteInfo(info);
+        
         if (inforeturned instanceof Person) {
             Person returnedOne = (Person) inforeturned;
             JsonObject json = new JsonObject();
-            json.addProperty("firstName", returnedOne.getId());
+            json.addProperty("id", returnedOne.getId());
             json.addProperty("firstName", returnedOne.getFirstName());
             json.addProperty("lastName", returnedOne.getLastName());
             json.addProperty("email", returnedOne.getEmail());
@@ -219,7 +222,7 @@ public class GenericResource {
             }
 
             json.add("phones", phoneArray);
-            json.addProperty("street", returnedOne.getAddress().getStreet());
+            json.addProperty("strret", returnedOne.getAddress().getStreet());
             json.addProperty("additionalInfo", returnedOne.getAddress().getAdditionalInfo());
             json.addProperty("zipcode", returnedOne.getAddress().getCityInfo().getZipCode());
             json.addProperty("city", returnedOne.getAddress().getCityInfo().getCity());
@@ -247,7 +250,7 @@ public class GenericResource {
             }
 
             json.add("phones", phoneArray);
-            json.addProperty("street", returnedOne.getAddress().getStreet());
+            json.addProperty("strret", returnedOne.getAddress().getStreet());
             json.addProperty("additionalInfo", returnedOne.getAddress().getAdditionalInfo());
             json.addProperty("zipcode", returnedOne.getAddress().getCityInfo().getZipCode());
             json.addProperty("city", returnedOne.getAddress().getCityInfo().getCity());

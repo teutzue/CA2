@@ -34,7 +34,7 @@ public class InfoEntity implements Serializable {
     @OneToMany(mappedBy = "infoEntity",cascade = CascadeType.PERSIST)
     @JoinColumn
     private List<Phone> phones = new ArrayList<>();
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
 
     public InfoEntity() {

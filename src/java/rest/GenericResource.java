@@ -18,6 +18,7 @@ import entity.Hobby;
 import entity.InfoEntity;
 import entity.Person;
 import entity.Phone;
+import exceptions.DataNotFoundException;
 import java.util.List;
 import javax.persistence.Persistence;
 import javax.ws.rs.core.Context;
@@ -57,10 +58,11 @@ public class GenericResource {
     @GET
     @Path("complete")
     @Produces("application/json")
-    public String getJson() {
+    public String getJson() throws DataNotFoundException {
 
         Gson gson = new Gson();
         List<Person> people = cus.getAllData();
+
         JsonArray jsonArray = new JsonArray();
         for (Person p : people) {
             JsonObject json = new JsonObject();
@@ -78,19 +80,30 @@ public class GenericResource {
             }
 
             json.add("phones", phoneArray);
-            json.addProperty("strret", p.getAddress().getStreet());
-            json.addProperty("additionalInfo", p.getAddress().getAdditionalInfo());
-            json.addProperty("zipcode", p.getAddress().getCityInfo().getZipCode());
-            json.addProperty("city", p.getAddress().getCityInfo().getCity());
-            List<Hobby> hobbies = p.getHobbys();
-            JsonArray hobArray = new JsonArray();
-            for (Hobby hob : hobbies) {
-                JsonObject hobJson = new JsonObject();
-                hobJson.addProperty("name", hob.getName());
-                hobJson.addProperty("description", hob.getDescription());
-                hobArray.add(hobJson);
+//
+//            Address ad = p.getAddress();
+//            if (ad == null) {
+//                throw new DataNotFoundException(" There was no address for that person " + p.getFirstName());
+//            } else {
+//                json.addProperty("strret", p.getAddress().getStreet());
+//            }
+            if (p.getAddress() == null) {
+                System.out.println("nno address");
+            } else {
+                json.addProperty("additionalInfo", p.getAddress().getAdditionalInfo());
             }
-            json.add("hobbies", hobArray);
+
+//            json.addProperty("zipcode", p.getAddress().getCityInfo().getZipCode());
+//            json.addProperty("city", p.getAddress().getCityInfo().getCity());
+//            List<Hobby> hobbies = p.getHobbys();
+//            JsonArray hobArray = new JsonArray();
+//            for (Hobby hob : hobbies) {
+//                JsonObject hobJson = new JsonObject();
+//                hobJson.addProperty("name", hob.getName());
+//                hobJson.addProperty("description", hob.getDescription());
+//                hobArray.add(hobJson);
+//            }
+//            json.add("hobbies", hobArray);
             jsonArray.add(json);
         }
 
@@ -132,7 +145,7 @@ public class GenericResource {
         address.addInfoEntity(p);
 
         CityInfo cityinfo = new CityInfo();
-        
+
         String zip = person.get("zipcode").getAsString();
         String city = person.get("city").getAsString();
         int zipnumber = Integer.parseInt(zip);
@@ -140,7 +153,7 @@ public class GenericResource {
         cityinfo.setCity(city);
 
         address.setCityInfo(cityinfo);
-        
+
         cityinfo.addAddress(address);
 
         JsonArray hobbiesArr = person.getAsJsonArray("hobbies");
@@ -203,7 +216,7 @@ public class GenericResource {
 
         InfoEntity info = cus.find(id);
         InfoEntity inforeturned = cus.deleteInfo(info);
-        
+
         if (inforeturned instanceof Person) {
             Person returnedOne = (Person) inforeturned;
             JsonObject json = new JsonObject();

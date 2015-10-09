@@ -10,10 +10,7 @@ import entity.Person;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import testData.TestDataPerson;
@@ -22,12 +19,12 @@ import testData.TestDataPerson;
  *
  * @author bo
  */
-public class FacadePersonTester {
+public class FacadePersonTest {
     
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2-deployment");
     Facade facade = new Facade(emf);
     
-    public FacadePersonTester() {}
+    public FacadePersonTest() {}
     
    
     

@@ -16,9 +16,9 @@ import javax.persistence.Persistence;
 public class Tester {
   
   public static void main(String[] args) {
-    //Persistence.generateSchema("pu_production", null);
-    //Persistence.generateSchema("CA2PU", null);
-    Persistence.generateSchema("CA2-deployment", null);
+      
+    //Persistence.generateSchema("CA2-deployment", null);
+    Persistence.generateSchema("CA2-test", null);
 //    EntityManagerFactory emf= Persistence.createEntityManagerFactory("CA2PU");
 //    Facade fa = new  Facade(emf);
 ////    

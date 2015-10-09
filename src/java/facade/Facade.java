@@ -77,7 +77,7 @@ public class Facade {
     public InfoEntity findInfoEntity(int id) {
         EntityManager em = emf.createEntityManager();
         System.out.println("I am in find method " + em.find(Person.class, id));
-        return em.find(InfoEntity.class, id);
+        return em.find(Person.class, id);
     }
     
     public Phone findPhone(int id) {

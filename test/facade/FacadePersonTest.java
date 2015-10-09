@@ -21,7 +21,7 @@ import testData.TestDataPerson;
  */
 public class FacadePersonTest {
     
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2-deployment");
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2-test");
     Facade facade = new Facade(emf);
     
     public FacadePersonTest() {}
@@ -54,7 +54,7 @@ public class FacadePersonTest {
         Person newPersonWithId = (Person) facade.addPerson(TestDataPerson.getNewPerson());
         assertNotNull(newPersonWithId);
         
-        Person person = (Person) facade.find(newPersonWithId.getId());
+        Person person = (Person) facade.findInfoEntity(newPersonWithId.getId());
         assertTrue(TestDataPerson.compareProperties(person));
         
     } // End of method
@@ -66,7 +66,7 @@ public class FacadePersonTest {
         Person newPersonWithId = (Person) facade.addPerson(TestDataPerson.getNewPerson());
         assertNotNull(newPersonWithId);
         
-        Person samePerson = (Person) facade.find(newPersonWithId.getId());
+        Person samePerson = (Person) facade.findInfoEntity(newPersonWithId.getId());
         assertTrue(TestDataPerson.compareProperties(samePerson));
         
     } // End of method

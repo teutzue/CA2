@@ -37,8 +37,12 @@ public class InfoEntity implements Serializable {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Address address;
 
-    public InfoEntity() {
+    public InfoEntity() {}
+    public InfoEntity(String email, Address address) {
+        this.email = email;
+        this.address = address;
     }
+    
 
     public List<Phone> getPhones() {
         return phones;

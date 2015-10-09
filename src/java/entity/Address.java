@@ -28,9 +28,13 @@ public class Address implements Serializable {
     @ManyToOne(cascade = CascadeType.PERSIST)
     private CityInfo cityInfo;
 
-    public Address() {
+    public Address() {}
+    public Address(String street, String AdditionalInfo, CityInfo cityInfo) {
+        this.street = street;
+        this.AdditionalInfo = AdditionalInfo;
+        this.cityInfo = cityInfo;
     }
-
+    
     public List<InfoEntity> getInfoEntities() {
         return infoEntities;
     }

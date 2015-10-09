@@ -25,8 +25,12 @@ public class CityInfo implements Serializable {
     @OneToMany(mappedBy = "cityInfo", cascade = CascadeType.PERSIST)
     private List<Address> addresses = new ArrayList<>();
 
-    public CityInfo() {
+    public CityInfo() {}
+    public CityInfo(Integer zip, String city) {
+        this.zip = zip;
+        this.city = city;
     }
+    
 
     public Integer getId() {
         return id;

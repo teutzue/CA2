@@ -23,15 +23,20 @@ public class Phone implements Serializable {
     @ManyToOne
     private InfoEntity infoEntity;
 
+    public Phone() {}
+    public Phone(Integer number, String description, InfoEntity infoEntity) {
+        this.number = number;
+        this.description = description;
+        this.infoEntity = infoEntity;
+    }
+    
+    
     public InfoEntity getInfoEntity() {
         return infoEntity;
     }
 
     public void setInfoEntity(InfoEntity infoEntity) {
         this.infoEntity = infoEntity;
-    }
-    
-    public Phone() {
     }
     
     public Integer getId() {

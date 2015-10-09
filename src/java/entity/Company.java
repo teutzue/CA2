@@ -21,8 +21,15 @@ public class Company extends InfoEntity {
     private String NumEmployees;
     private double marketValue;
 
-    public Company() {
+    public Company() {}
+    public Company(String name, String description, int cvr, String NumEmployees, double marketValue) {
+        this.name = name;
+        this.description = description;
+        this.cvr = cvr;
+        this.NumEmployees = NumEmployees;
+        this.marketValue = marketValue;
     }
+    
 
     public String getName() {
         return name;

@@ -27,8 +27,12 @@ public class Hobby implements Serializable {
     @ManyToMany(cascade = CascadeType.PERSIST)
     private List<Person> persons = new ArrayList<>();
 
-    public Hobby() {
+    public Hobby() {}
+    public Hobby(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
+    
     
     public Integer getId() {
         return id;

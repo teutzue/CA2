@@ -81,17 +81,16 @@ public class GenericResource {
 
             json.add("phones", phoneArray);
 //
-//            Address ad = p.getAddress();
-//            if (ad == null) {
+//            if (p.getAddress() == null) {
 //                throw new DataNotFoundException(" There was no address for that person " + p.getFirstName());
 //            } else {
 //                json.addProperty("strret", p.getAddress().getStreet());
 //            }
-            if (p.getAddress() == null) {
-                System.out.println("nno address");
-            } else {
-                json.addProperty("additionalInfo", p.getAddress().getAdditionalInfo());
-            }
+//            if (p.getAddress() == null) {
+//                System.out.println("nno address");
+//            } else {
+//                json.addProperty("additionalInfo", p.getAddress().getAdditionalInfo());
+//            }
 
 //            json.addProperty("zipcode", p.getAddress().getCityInfo().getZipCode());
 //            json.addProperty("city", p.getAddress().getCityInfo().getCity());
@@ -213,9 +212,11 @@ public class GenericResource {
     @Produces("application/json")
     public String delete(@PathParam("id") Integer id) {
         Gson gson = new Gson();
-
-        InfoEntity info = cus.find(id);
-        InfoEntity inforeturned = cus.deleteInfo(info);
+        Phone ph = cus.findPhone(id);
+        Phone phDel = cus.deletePhone(ph);
+        
+        InfoEntity info = cus.findInfoEntity(id);
+        InfoEntity inforeturned = cus.deleteInfo(info); 
 
         if (inforeturned instanceof Person) {
             Person returnedOne = (Person) inforeturned;

@@ -3,6 +3,7 @@ package facade;
 import entity.Company;
 import entity.InfoEntity;
 import entity.Person;
+import entity.Phone;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -73,13 +74,32 @@ public class Facade {
 
     }
 
-    public InfoEntity find(int id) {
+    public InfoEntity findInfoEntity(int id) {
         EntityManager em = emf.createEntityManager();
         System.out.println("I am in find method " + em.find(Person.class, id));
         return em.find(InfoEntity.class, id);
     }
+    
+    public Phone findPhone(int id) {
+        EntityManager em = emf.createEntityManager();
+        System.out.println("I am in find method " + em.find(Phone.class, id));
+        return em.find(Phone.class, id);
+    }
 
     public InfoEntity deleteInfo(InfoEntity entity) {
+        EntityManager ems = emf.createEntityManager();
+        try {
+            ems.getTransaction().begin();
+            entity = ems.merge(entity);
+            ems.remove(entity);
+            ems.getTransaction().commit();
+        } finally {
+            ems.close();
+        }
+        return entity;
+    }
+    
+    public Phone deletePhone(Phone entity) {
         EntityManager ems = emf.createEntityManager();
         try {
             ems.getTransaction().begin();

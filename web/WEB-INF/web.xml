@@ -5,11 +5,9 @@
         <param-name>debug</param-name>
         <param-value>true</param-value>
     </context-param>
-    
     <listener>
         <listener-class>deploy.DeploymentConfiguration</listener-class>
     </listener>
-    
     <session-config>
         <session-timeout>
             30
@@ -62,4 +60,7 @@
         <description/>
         <role-name>role1</role-name>
     </security-role>-->
+    <security-constraint>
+        <display-name>SSL</display-name>
+    </security-constraint>
 </web-app>

@@ -24,7 +24,8 @@ public class Phone implements Serializable {
     private InfoEntity infoEntity;
 
     public Phone() {}
-    public Phone(Integer number, String description, InfoEntity infoEntity) {
+    public Phone(Integer number, String description, InfoEntity infoEntity) 
+    {
         this.number = number;
         this.description = description;
         this.infoEntity = infoEntity;

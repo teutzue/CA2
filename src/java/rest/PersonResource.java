@@ -77,12 +77,18 @@ public class PersonResource {
     @GET
     @Path("contactinfo/{id}")
     @Produces("application/json")
-    public String getJson2(@PathParam("id") Integer id) 
+    public String getJson2(@PathParam("id") Integer id) throws DataNotFoundException 
     {
   
           Gson gson = new Gson();
           JsonObject json = new JsonObject();
           Person p = (Person) cus.findInfoEntity(id);
+          
+          if(p==null)
+          {
+              throw new DataNotFoundException("Sorry no person with that id ");
+          }
+          
           if(p.getAddress()!=null )
           {
           json.addProperty("additionalInfo", p.getAddress().getAdditionalInfo());
@@ -150,7 +156,7 @@ public class PersonResource {
     @PUT
     @Consumes("application/json")
     @Produces("application/json")
-    public String putJson(String content) 
+    public String putJson(String content) throws DataNotFoundException
     {
         
         Gson gson = new Gson();  
@@ -172,10 +178,16 @@ public class PersonResource {
     {
         Gson gson = new Gson();
 
-        InfoEntity info = cus.findInfoEntity(id);
+       InfoEntity info = cus.findInfoEntity(id);
         //*******TEO for the method he created
-       //List<Phone> phones = cus.
-        
+       List<Phone> phoness = cus.getPhonesByIdPerson(id);
+        for (int i = 0; i < phoness.size(); i++)
+        {
+            Phone ph = cus.deletePhone(phoness.get(i));
+        }
+       
+       
+       
         InfoEntity inforeturned = cus.deleteInfo(info);
  
         if (inforeturned instanceof Person)

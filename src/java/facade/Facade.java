@@ -33,7 +33,8 @@ public class Facade {
         return emp;
     }
 
-    public InfoEntity addPerson(InfoEntity p) {
+    public InfoEntity addPerson(InfoEntity p) 
+    {
 
         EntityManager em = emf.createEntityManager();
         try {
@@ -101,7 +102,8 @@ public class Facade {
         return entity;
     }
     
-    public Phone deletePhone(Phone entity) {
+    public Phone deletePhone(Phone entity) 
+    {
         EntityManager ems = emf.createEntityManager();
         try {
             ems.getTransaction().begin();
@@ -163,6 +165,19 @@ public class Facade {
         InfoEntity info = (InfoEntity) query3.getSingleResult();
         return info;//it is needed to be checked if its null
     }
+    
+    public List<Phone>  getPhonesByIdPerson(int idPerson)
+    {
+        EntityManager ems = emf.createEntityManager();
+        String queryString = "select e FROM  Phone e where e.infoEntity.id =:number";
+        Query query3 = ems.createQuery(queryString);
+        query3.setParameter("number", idPerson);
+        List<Phone> list = query3.getResultList();
+        //InfoEntity info = (InfoEntity) query3.getSingleResult();
+        return list;//it is needed to be checked if its null
+    }
+    
+    
 
     public List<Integer> getListOfzipcodes() {
         EntityManager ems = emf.createEntityManager();

@@ -4,6 +4,7 @@ import entity.Address;
 import entity.Company;
 import entity.InfoEntity;
 import entity.Person;
+import entity.Phone;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -73,15 +74,34 @@ public class Facade {
         return results;
 
     }
+    
 
-    public InfoEntity find(int id) 
-    {
+    public InfoEntity findInfoEntity(int id) {
         EntityManager em = emf.createEntityManager();
         System.out.println("I am in find method " + em.find(Person.class, id));
-        return em.find(InfoEntity.class, id);
+        return em.find(Person.class, id);
+    }
+    
+    public Phone findPhone(int id) {
+        EntityManager em = emf.createEntityManager();
+        System.out.println("I am in find method " + em.find(Phone.class, id));
+        return em.find(Phone.class, id);
     }
 
     public InfoEntity deleteInfo(InfoEntity entity) {
+        EntityManager ems = emf.createEntityManager();
+        try {
+            ems.getTransaction().begin();
+            entity = ems.merge(entity);
+            ems.remove(entity);
+            ems.getTransaction().commit();
+        } finally {
+            ems.close();
+        }
+        return entity;
+    }
+    
+    public Phone deletePhone(Phone entity) {
         EntityManager ems = emf.createEntityManager();
         try {
             ems.getTransaction().begin();
@@ -184,7 +204,7 @@ public class Facade {
     
        public Person getPerson(int id)
         {
-          Person p = (Person) find(id); 
+          Person p = (Person) findInfoEntity(id); 
           return p;
         }
     

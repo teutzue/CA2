@@ -56,7 +56,7 @@ public class PersonResource {
     {
         
         Gson gson = new Gson();
-        Person p =  (Person) cus.find(id);
+        Person p =  (Person) cus.findInfoEntity(id);
 //         //return " "+p.getFirstName();
          String stringPerson = JSONConverter.getJSONFromPerson(p);
          return stringPerson;
@@ -82,7 +82,7 @@ public class PersonResource {
   
           Gson gson = new Gson();
           JsonObject json = new JsonObject();
-          Person p = (Person) cus.find(id);
+          Person p = (Person) cus.findInfoEntity(id);
           if(p.getAddress()!=null )
           {
           json.addProperty("additionalInfo", p.getAddress().getAdditionalInfo());
@@ -172,7 +172,7 @@ public class PersonResource {
     {
         Gson gson = new Gson();
 
-        InfoEntity info = cus.find(id);
+        InfoEntity info = cus.findInfoEntity(id);
         //*******TEO for the method he created
        //List<Phone> phones = cus.
         

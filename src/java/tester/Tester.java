@@ -31,7 +31,7 @@ public class Tester {
 //        System.out.println("YEs");
 //    }
     
-    InfoEntity info = fa.find(3);
+    InfoEntity info = fa.findInfoEntity(3);
    // System.out.println("The person with id 3 is "+info.getFirstName());
     InfoEntity afterDelete = fa.deleteInfo(info);
     Person p = (Person) afterDelete;

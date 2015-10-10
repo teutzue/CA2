@@ -4,8 +4,10 @@ package tester;
 import entity.Address;
 //import entity.Facade;
 import entity.Hobby;
+import entity.InfoEntity;
 import entity.Person;
 import entity.Phone;
+import facade.Facade;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
@@ -19,8 +21,23 @@ public class Tester {
     //Persistence.generateSchema("pu_production", null);
     //Persistence.generateSchema("CA2PU", null);
     Persistence.generateSchema("CA2-deployment", null);
-//    EntityManagerFactory emf= Persistence.createEntityManagerFactory("CA2PU");
-//    Facade fa = new  Facade(emf);
+    EntityManagerFactory emf= Persistence.createEntityManagerFactory("CA2-deployment");
+    Facade fa = new  Facade(emf);
+  //  Person getPersonById = fa.getPerson(1);
+//    Person returned = (Person) fa.find(3);
+//    System.out.println("The person with id 3 is "+returned.getFirstName());
+//    if(returned instanceof Person)
+//    {
+//        System.out.println("YEs");
+//    }
+    
+    InfoEntity info = fa.find(3);
+   // System.out.println("The person with id 3 is "+info.getFirstName());
+    InfoEntity afterDelete = fa.deleteInfo(info);
+    Person p = (Person) afterDelete;
+      System.out.println("the persn with id 3 is "+p.getFirstName());
+    
+    
 ////    
 ////    Phone phone = new Phone();
 ////    phone.setNumber(45678943);

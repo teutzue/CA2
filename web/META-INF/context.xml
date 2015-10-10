@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context antiJARLocking="true" path="/CA2">
-  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="CA2PU-deployment" password="" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3307/CA2-Deployment?zeroDateTimeBehavior=convertToNull" username="root"/>
+  <Resource auth="Container" driverClassName="com.mysql.jdbc.Driver" maxActive="20" maxIdle="10" maxWait="-1" name="CA2PU-deployment" password="" type="javax.sql.DataSource" url="jdbc:mysql://localhost:3306/help?zeroDateTimeBehavior=convertToNull" username="root"/>
 </Context>

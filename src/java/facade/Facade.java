@@ -1,5 +1,6 @@
 package facade;
 
+import entity.Address;
 import entity.Company;
 import entity.InfoEntity;
 import entity.Person;
@@ -73,7 +74,8 @@ public class Facade {
 
     }
 
-    public InfoEntity find(int id) {
+    public InfoEntity find(int id) 
+    {
         EntityManager em = emf.createEntityManager();
         System.out.println("I am in find method " + em.find(Person.class, id));
         return em.find(InfoEntity.class, id);
@@ -110,8 +112,21 @@ public class Facade {
         List<Person> l = (List<Person>) query3.getResultList();
         return l;//it is needed to be checked if its null
     }
+    
+       public Address getPersonsContactInfo(int id) 
+       {
+        EntityManager ems = emf.createEntityManager();
+       // String queryString = "select e.per FROM Hobby e where e.name =:something";
+        String queryString = "select e.address FROM InfoEntity e where e.id =:id";
+        Query query3 = ems.createQuery(queryString);
+        query3.setParameter("something", id);
+        Address l = (Address) query3.getSingleResult();
+        return l;
+    }
+    
 
-    public List<Company> getCompaniesWithMOreThanEmployees(int number) {
+    public List<Company> getCompaniesWithMOreThanEmployees(int number)
+    {
         EntityManager ems = emf.createEntityManager();
         String queryString = "select e. FROM Company e where e.NumEmployees >:something";
         Query query3 = ems.createQuery(queryString);
@@ -138,7 +153,8 @@ public class Facade {
         return list;//it is needed to be checked if its null
     }
 
-    public Integer getTheCOuntOfPeopleWithGivenHobby(int number) {
+    public Integer getTheCOuntOfPeopleWithGivenHobby(int number) 
+    {
 
         EntityManager ems = emf.createEntityManager();
         String queryString = "select size(e.per) FROM Hobby e where e.name =:something";
@@ -162,5 +178,16 @@ public class Facade {
         return results;
 
     }
+    
+    
+    
+    
+       public Person getPerson(int id)
+        {
+          Person p = (Person) find(id); 
+          return p;
+        }
+    
+    
 
 }

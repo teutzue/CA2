@@ -15,11 +15,31 @@ $(function () {
             success: function (data) {
                 var trHTML = '';
                 $.each(data, function (i, item) {
-                    trHTML += '<tr><td>' + item.firstName + '</td><td>' + item.lastName + '</td><td>'
-                            + item.email + '</td><td><a href="#" class="delete">delete</a> <a class="edit">edit</a></td></tr>';
+                    trHTML += '<tr>\n\\n\
+                    <td id="item.id">' + item.id + '</td>\n\
+                    <td>' + item.firstName + '</td>\n\
+                    <td>' + item.lastName + '</td>\n\
+                    <td>' + item.email + '</td>\n\
+                    <td><a href="#" class="delete">Delete</a> <a class="edit">Edit</a></td>\n\
+                    </tr>';
                 });
                 $('.table-striped').append(trHTML);
             }
         });
+
     });
+//    $('.delete').click(function () {
+//        var id = $(this ~ tr).attr("id");
+//        alert(id);
+//        $.ajax({
+//            type: "DELETE",
+//            url: "api/person/complete" + id,
+//            success: function (msg) {
+//                alert(id);
+//                //$(id).remove();
+//                //location.reload();
+//            }
+//        });
+//    });
 });
+

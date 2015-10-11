@@ -12,6 +12,7 @@ import entity.CityInfo;
 import entity.Hobby;
 import entity.Person;
 import entity.Phone;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JSONConverter 
@@ -110,7 +111,107 @@ public class JSONConverter
 
     }
 
-    
+//    public static List<Person> getListOfPersonsFromJson(String jsonAsString)
+//    {
+//         List<Person> list = new ArrayList();
+//         Gson gson = new Gson();
+//        JsonArray persons = new JsonParser().parse(jsonAsString).getAsJsonArray();
+//        int len = persons.getAsJsonArray().size();
+//         
+//         
+//         
+//         
+//        Person p = new Person(); 
+//        for (int i = 0; i < 10; i++) 
+//        {
+//            
+//        }
+//        
+//        if(person.has("id"))
+//        {
+//             p.setId(person.get("id").getAsInt());  
+//        }
+//        p.setFirstName(person.get("firstName").getAsString());
+//        p.setLastName(person.get("lastName").getAsString());
+//        p.setEmail(person.get("email").getAsString());
+//        
+//        if(person.has("phones"))
+//        {
+//        JsonArray phonesArr = person.getAsJsonArray("phones");
+//        for (JsonElement pjo : phonesArr) 
+//        {
+//            Phone phone = new Phone();
+//            String ph = pjo.getAsJsonObject().get("number").getAsString();
+//            String desc = pjo.getAsJsonObject().get("description").getAsString();
+//            int phnumber = Integer.parseInt(ph);
+//            phone.setNumber(phnumber);
+//            phone.setDescription(desc);
+//            p.addPhone(phone);
+//            phone.setInfoEntity(p);
+//        }
+//        }
+//        
+//        Address address = null;
+//        if(person.has("street"))
+//        {
+//        address = new Address();
+//        String street = person.get("street").getAsString();
+//        address.setStreet(street);
+//        }
+//        if(person.has("additionalInfo"))
+//        {
+//        String additionalinfo = person.get("additionalInfo").getAsString();
+//        address.setAdditionalInfo(additionalinfo);
+//        }
+//        if(address!=null)
+//        {
+//        p.setAddress(address);
+//        address.addInfoEntity(p);
+//        }
+//
+//        CityInfo cityinfo = null;
+//        
+//        if(person.has("zipcode"))
+//        {
+//        String zip = person.get("zipcode").getAsString();
+//        int zipnumber = Integer.parseInt(zip);
+//        cityinfo = new CityInfo();
+//        cityinfo.setZip(zipnumber);
+//        }
+//        
+//        if(person.has("city"))
+//        {
+//        String city = person.get("city").getAsString();
+//        cityinfo.setCity(city);
+//        }
+//        
+//         if(cityinfo!=null)
+//         {
+//        address.setCityInfo(cityinfo);
+//        cityinfo.addAddress(address);
+//         }
+//
+//       if(person.has("hobbies"))
+//       {
+//        JsonArray hobbiesArr = person.getAsJsonArray("hobbies");
+//        for (JsonElement pjo : hobbiesArr) 
+//        {
+//            Hobby hob = new Hobby();
+//            String name = pjo.getAsJsonObject().get("name").getAsString();
+//            String desc = pjo.getAsJsonObject().get("description").getAsString();
+//
+//            hob.setName(name);
+//            hob.setDescription(desc);
+//            p.addHobby(hob);
+//            hob.addPerson(p);
+//
+//        }
+//       }
+//    
+//     //   System.out.println(p.getId());
+//      //  return p;
+//
+//    }
     
      public static String getJSONFromPersons(List<Person> people) 
     {
@@ -142,13 +243,14 @@ public class JSONConverter
                  json.addProperty("street", p.getAddress().getStreet());
                  json.addProperty("additionalInfo", p.getAddress().getAdditionalInfo());
                  
-            }
+            
             if(p.getAddress().getCityInfo() != null)
                     {
             json.addProperty("zipcode", p.getAddress().getCityInfo().getZipCode());
             json.addProperty("city", p.getAddress().getCityInfo().getCity());
                         
                     }
+            }
            
             List<Hobby> hobbies = p.getHobbys();
             JsonArray hobArray = new JsonArray();
@@ -187,16 +289,18 @@ public class JSONConverter
                 phoneArray.add(phoneJson);
             }
             json.add("phones", phoneArray);    
-            }       
+            }   
+            
              if(p.getAddress()!=null )
           {
           json.addProperty("additionalInfo", p.getAddress().getAdditionalInfo());
           json.addProperty("street", p.getAddress().getStreet());
-          }
+          
           if(p.getAddress().getCityInfo()!=null)
           {
           json.addProperty("zipcode", p.getAddress().getCityInfo().getZipCode());
           json.addProperty("city", p.getAddress().getCityInfo().getCity());
+          }
           }
             
             

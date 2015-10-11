@@ -15,16 +15,12 @@ public class TestDataPerson {
     
     private static final String FIRST_NAME = "TEST-FIRST-NAME";
     private static final String LAST_NAME = "TEST-LAST-NAME";
-    private static final String EMAIL = "TEST@TEST.TEST";
     
     private TestDataPerson() {}
     
     public static Person getNewPerson() {
         
-        Person person = new Person(FIRST_NAME, LAST_NAME);
-        person.setEmail(EMAIL);
-        
-        return person;
+        return new Person(FIRST_NAME, LAST_NAME);
     }
     
     public static boolean compareProperties(Person p) {
@@ -41,19 +37,6 @@ public class TestDataPerson {
 
         return isProperties;
     } // End of method
-
-    public static String getFIRST_NAME() {
-        return FIRST_NAME;
-    }
-
-    public static String getLAST_NAME() {
-        return LAST_NAME;
-    }
-
-    public static String getEMAIL() {
-        return EMAIL;
-    }
-    
     
     
 } // End of Class

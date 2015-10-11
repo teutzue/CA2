@@ -93,17 +93,18 @@ public class PersonResource {
           {
           json.addProperty("additionalInfo", p.getAddress().getAdditionalInfo());
           json.addProperty("street", p.getAddress().getStreet());
-          }
+          
           if(p.getAddress().getCityInfo()!=null)
           {
           json.addProperty("zipcode", p.getAddress().getCityInfo().getZipCode());
           json.addProperty("city", p.getAddress().getCityInfo().getCity());
           }
+          }
          
        return gson.toJson(json);
    
     }
-     @GET
+    @GET
     @Path("contactinfo")
     @Produces("application/json")
     public String getContactInfoForAllPersons()  
@@ -112,17 +113,19 @@ public class PersonResource {
         List<Person> people = cus.getAllData();
         
           JsonArray jsonArray = new JsonArray();
-        for (Person p : people) {
-            JsonObject json = new JsonObject();
+        for (Person p : people) 
+        {
+           JsonObject json = new JsonObject();
           if(p.getAddress()!=null )
           {
           json.addProperty("additionalInfo", p.getAddress().getAdditionalInfo());
           json.addProperty("street", p.getAddress().getStreet());
-          }
+          
           if(p.getAddress().getCityInfo()!=null)
           {
           json.addProperty("zipcode", p.getAddress().getCityInfo().getZipCode());
           json.addProperty("city", p.getAddress().getCityInfo().getCity());
+          }
           }
           jsonArray.add(json);
         }

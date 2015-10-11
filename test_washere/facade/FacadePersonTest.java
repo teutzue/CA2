@@ -21,7 +21,7 @@ import testData.TestDataPerson;
  */
 public class FacadePersonTest {
     
-    EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2-deployment"); //CA2-test //CA2-deployment
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("CA2-test");
     Facade facade = new Facade(emf);
     
     public FacadePersonTest() {}

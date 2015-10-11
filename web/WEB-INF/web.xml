@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <description>If true, the stack trace is included with error responses</description>
+        <param-name>debug</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    
+    <listener>
+        <listener-class>deploy.DeploymentConfiguration</listener-class>
+    </listener>
+    
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <!--<security-constraint>
+        <display-name>REST</display-name>
+        <web-resource-collection>
+            <web-resource-name>REST </web-resource-name>
+            <description/>
+            <url-pattern>/api/person/*</url-pattern>
+            <http-method>PUT</http-method>
+            <http-method>POST</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>role1</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>Pages</display-name>
+        <web-resource-collection>
+            <web-resource-name>index</web-resource-name>
+            <description/>
+            <url-pattern>/index.html</url-pattern>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>handleUsers</web-resource-name>
+            <description/>
+            <url-pattern>/handleUsers.html</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>role1</role-name>
+        </auth-constraint>
+        <user-data-constraint>
+            <description/>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+    </login-config>
+    <security-role>
+        <description/>
+        <role-name>role1</role-name>
+    </security-role>-->
+</web-app>

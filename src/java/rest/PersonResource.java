@@ -8,6 +8,7 @@ package rest;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import deploy.DeploymentConfiguration;
 import entity.Company;
 import entity.InfoEntity;
 import entity.Person;
@@ -38,7 +39,7 @@ public class PersonResource {
 
     @Context
     private UriInfo context;
-   Facade cus = new Facade(Persistence.createEntityManagerFactory("CA2-deployment"));
+   Facade cus = new Facade(Persistence.createEntityManagerFactory(DeploymentConfiguration.PU_NAME));
     /**
      * Creates a new instance of PersonResource
      */
